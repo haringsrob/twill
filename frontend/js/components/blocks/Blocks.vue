@@ -224,6 +224,7 @@
         cloneFn && cloneFn({ block, index: blockIndex + 1 })
       },
       handleBlockAdd (fn, block, index = -1) {
+        console.log(block)
         fn(block, index)
         this.$nextTick(() => {
           this.checkExpandBlocks()

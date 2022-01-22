@@ -13,7 +13,12 @@
 @unless($withoutSeparator ?? false)
 <hr/>
 @endunless
-<a17-blocks title="{{ $title }}" trigger="{{ $trigger }}" editor-name="{{ $name }}"></a17-blocks>
+<a17-blocks title="{{ $title }}" trigger="{{ $trigger }}" editor-name="{{ $name }}"
+@if($renderForBlocks)
+    :is-nested="true"
+    :parent-block-data="getParentBlockData()"
+@endif
+></a17-blocks>
 
 @push('vuexStore')
     window['{{ config('twill.js_namespace') }}'].STORE.form.availableBlocks['{{ $name }}'] = {!! json_encode(array_values($allowedBlocks)) !!}

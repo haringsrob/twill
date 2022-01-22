@@ -7,6 +7,14 @@ export default {
     isOpen: {
       type: Boolean,
       default: false
+    },
+    parentEditorName: {
+      type: String,
+      required: false
+    },
+    parentEditorId: {
+      type: Number,
+      required: false
     }
   },
   data: function () {
@@ -20,6 +28,12 @@ export default {
     },
     fieldName: function (id) {
       return this.name + '[' + id + ']' // output : nameOfBlock[UniqID][name]
+    },
+    getParentBlockData: function () {
+      return {
+        name: this.parentEditorName,
+        id: this.parentEditorId
+      }
     },
     repeaterName: function (id) {
       return this.name.replace('[', '-').replace(']', '') + '_' + id // nameOfBlock-UniqID_name

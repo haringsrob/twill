@@ -4,7 +4,6 @@ namespace A17\Twill\Models\Behaviors;
 
 use A17\Twill\Exceptions\MediaCropNotFoundException;
 use A17\Twill\Models\Media;
-use A17\Twill\Models\Model;
 use Illuminate\Support\Arr;
 use ImageService;
 
@@ -19,7 +18,7 @@ trait HasMedias
 
     public static function bootHasMedias(): void
     {
-        self::deleted(static function (Model $model) {
+        self::deleted(static function ($model) {
             if ($model->isForceDeleting()) {
                 /** @var \A17\Twill\Models\Behaviors\HasMedias $model */
                 $model->medias()->detach();
