@@ -5,8 +5,7 @@
         <input type="checkbox" class="checkbox__input" :class="checkboxClasses" value="true" :name="name + '[' + randKey + ']'" :id="uniqId" :disabled="disabled" :checked="checkedValue">
         <label class="checkbox__label" :for="uniqId" @click.prevent="changeCheckbox">{{ label }}
           <span class="checkbox__icon"><span v-svg symbol="check"></span></span>
-          <br />
-          <span class="f--small" v-if="note">{{ note }}</span>
+          <span class="f--small checkbox__note" v-if="note">{{ note }}</span>
         </label>
       </span>
     </div>
@@ -102,9 +101,16 @@
 
 <style lang="scss" scoped>
 
+  $checkboxSize: 15px;
   .checkbox {
     color:$color__text;
     min-width:30px;
+  }
+
+  .checkbox__note {
+    display: block;
+    margin-top: 4px;
+    color: $color__text--light;
   }
 
   .checkbox__input {
@@ -123,9 +129,10 @@
   .checkbox__label {
     display: block;
     position: relative;
-    padding-left: 15px + 10px;
+    padding-left: calc(#{$checkboxSize} + 12px);
     color: $color__f--text;
     cursor: pointer;
+    display: block;
   }
 
   .checkbox__icon,
@@ -133,8 +140,8 @@
     position: absolute;
     left: 0;
     top: 2px;
-    width: 15px;
-    height: 15px;
+    width: $checkboxSize;
+    height: $checkboxSize;
     border-radius: 2px;
     transition: all .2s linear;
   }
@@ -170,6 +177,9 @@
   .checkbox__input:hover   + .checkbox__label,
   .checkbox__input--checked + .checkbox__label {
     color:$color__text;
+    .checkbox__note {
+      color: $color__text--light;
+    }
   }
 
   // .checkbox__input:checked + .checkbox__label .checkbox__icon,
@@ -223,7 +233,7 @@
     padding: 0 15px;
 
     .checkbox__label {
-      padding-left: 25px;
+      padding-left: calc(#{$checkboxSize} + 12px);
       height: 50px;
       line-height: 50px;
       white-space: nowrap;
